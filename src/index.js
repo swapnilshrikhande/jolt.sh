@@ -81,10 +81,10 @@ const spawnFromCode = (code, customizations) => {
     ...customizations
   };
 
-  const spawnOptions = {shell: options.shell};
+  //const spawnOptions = {shell: options.shell};
 
   return new Spawn((send, close) => {
-    const proc = cp.spawn(code, spawnOptions);
+    const proc = cp.spawn(code, options);
 
     let result = '';
 
@@ -113,7 +113,7 @@ const createSpawnRunner = (customizations = {}) => {
   }
 
   return (strings, ...args) => {
-    return spawnFromCode(compile(strings, args));
+    return spawnFromCode(compile(strings, args),options);
   }
 }
 
